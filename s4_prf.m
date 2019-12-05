@@ -1,8 +1,5 @@
 % To run PRF analysis on sample data
 
-%% 1. open matlab and add paths:
-tbUse WinawerLab_SampleData;
-
 %% 2. Convert gifti files to mgz files (here we do it in Matlab)
 % Note that we might have already done this for the glmDenoise step.
 projectDir = pwd; % E.g., '/Volumes/server/Projects/SampleData/BIDS';
