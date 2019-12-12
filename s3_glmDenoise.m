@@ -1,10 +1,7 @@
 % To run GLM denoise on sample data
-% 1. open matlab and add the appropriate toolbox paths:
-tbUse WinawerLab_SampleData;
 
-% 2. Convert gifti files to mgz files
-projectDir = '/Volumes/server/Projects/SampleData/BIDS';
-
+% Convert gifti files to mgz files
+projectDir = pwd;
 
 cd (fullfile(projectDir, 'derivatives', 'fmriprep','sub-wlsubj042', 'ses-01', 'func'));
 
