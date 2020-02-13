@@ -12,7 +12,9 @@ function die {
 [ -z "`which matlab`" ] && die "matlab is not on the path!"
 [ -r /Applications/freesurfer/license.txt ] || die "No freesurfer license found!"
 
-./s0_download-data.sh "$PWD/DownloadedData" && cd DownloadedData
+[ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
+
+cd DownloadedData
 
 ../s1_preprocess-data.sh
 
@@ -23,5 +25,3 @@ matlab -nodisplay -nodesktop -nosplash ../s3_glmDenoise.m
 matlab -nodisplay -nodesktop -nosplash ../s4_prf.m
 
 ../s5_Benson_Atlases.sh
-
-
