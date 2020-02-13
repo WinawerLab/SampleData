@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Exit upon any error
+set -euxo pipefail
+
 function die {
     echo "$*"
     exit 1
@@ -9,21 +12,16 @@ function die {
 [ -z "`which matlab`" ] && die "matlab is not on the path!"
 [ -r /Applications/freesurfer/license.txt ] || die "No freesurfer license found!"
 
-mkdir temp && cd temp
-git clone https://github.com/winawerlab/sampledata && cd sampledata
+[ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
 
-mkdir -p DownloadedData 
+cd DownloadedData
 
-./s0_download-data.sh "$PWD/DownloadedData" && cd DownloadedData
+../s1_preprocess-data.sh
 
-./s1_preprocess-data.sh
+../s2_addToBIDS.sh
 
-./s2_addToBIDS.sh
+matlab -nodisplay -nodesktop -nosplash ../s3_glmDenoise.m
 
-matlab -nodisplay -nodesktop -nosplash ./s3_glmDenoise.m
+matlab -nodisplay -nodesktop -nosplash ../s4_prf.m
 
-matlab -nodisplay -nodesktop -nosplash ./s4_prf.m
-
-./s5_Benson_Atlases.sh
-
-
+../s5_Benson_Atlases.sh
