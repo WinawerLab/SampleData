@@ -12,7 +12,9 @@ function die {
 mkdir temp && cd temp
 git clone https://github.com/winawerlab/sampledata && cd sampledata
 
-./s0_download-data.sh "$PWD"
+mkdir -p DownloadedData 
+
+./s0_download-data.sh "$PWD/DownloadedData" && cd DownloadedData
 
 ./s1_preprocess-data.sh
 
