@@ -40,7 +40,7 @@ mkdir -p "$(pwd)/BIDS/derivatives/rois/sub-${sub}"
 docker run -i --rm \
            -v "$(pwd)/BIDS/derivatives/freesurfer:/subjects" \
            -v "$(pwd)/BIDS:/bids" \
-           -v "$(pwd)/s5_subscript_rois.py:/runpy/script.py" \
+           -v "$(pwd)/s6_subscript_rois.py:/runpy/script.py" \
            nben/neuropythy bash <<EOF
 python /runpy/script.py ${sub}
 EOF
