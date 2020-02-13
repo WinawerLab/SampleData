@@ -35,6 +35,16 @@ docker run --rm -it \
                --lh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/lh.vexpl.mgz \
                --rh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/rh.vexpl.mgz
 
+# Make an ROI directory
+mkdir -p "$(pwd)/BIDS/derivatives/rois/sub-${sub}"
+docker run -i --rm \
+           -v "$(pwd)/BIDS/derivatives/freesurfer:/subjects" \
+           -v "$(pwd)/BIDS:/bids" \
+           -v "$(pwd)/s5_subscript_rois.py:/runpy/script.py" \
+           nben/neuropythy bash <<EOF
+python /runpy/script.py
+EOF
+
 
 
 
