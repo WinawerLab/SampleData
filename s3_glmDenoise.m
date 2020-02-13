@@ -1,4 +1,5 @@
 % To run GLM denoise on sample data
+tbUse WinawerLab_SampleData;
 
 % Convert gifti files to mgz files
 projectDir = pwd;
