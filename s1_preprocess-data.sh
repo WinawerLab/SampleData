@@ -21,7 +21,15 @@ subjectID=wlsubj042
 # System specific #
 # (These are the same for all studies/subjects):
 # FreeSurfer license path:
-fsLicense=/Applications/freesurfer/license.txt
+if [ -z "$FREESURFER_LICENSE" ]
+then fsLicense=/Applications/freesurfer/license.txt
+else fsLicense="$FREESURFER_LICENSE"
+fi
+[ -r "$fsLicense" ] || {
+    echo "FreeSurfer license (${fsLicense}) not found!"
+    echo "You can set a custom license path by storing it in the environment variable FREESURFER_LICENSE"
+    exit 1
+}
 # we'll be running the Docker containers as yourself, not as root:
 userID=$(id -u):$(id -g)
 
