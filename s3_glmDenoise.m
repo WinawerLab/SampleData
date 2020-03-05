@@ -33,6 +33,9 @@ tr                = [];
 bidsGLM(projectDir, subject, session, tasks, runnums, ...
     dataFolder, dataStr, designFolder, stimdur, modelType, glmOptsPath, tr)
 
-% To get images of the GLM denoise output, run the following python command in the terminal:
-% dependency: https://github.com/winawerlab/mri_tools
-% python ~/Code/MRI_tools/BIDS/GLMdenoisePNGprocess.py "/Volumes/server/Projects/SampleData/BIDS/derivatives/GLMdenoise/shortblocks/sub-wlsubj042/ses-01/figures"
+% To get images of the GLM denoise output, run the following python command 
+pngprocess = which('GLMdenoisePNGprocess.py');
+figurepth  = fullfile(projectDir, 'derivatives', 'GLMdenoise', modelType, ...
+    sprintf('sub-%s', sub), sprintf('ses-%s', ses), 'figures');
+system(sprintf('python %s %s', pngprocess, figurepth));
+
