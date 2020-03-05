@@ -6,6 +6,7 @@
 
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
 
+source setup.sh
 
 # Go!
 # Sample data from subject wlsubj042, acquired on DATE!?!?!?!
@@ -14,15 +15,15 @@
 ###   Global variables:   ###
 
 # Study/subject specific #
-dcmFolder="/$(pwd)/dicoms"
-studyFolder="/$(pwd)/BIDS"
+dcmFolder="$SAMPLE_DATA_DIR/dicoms"
+studyFolder="$SAMPLE_DATA_DIR/BIDS"
 subjectID=wlsubj042
 
 # System specific #
 # (These are the same for all studies/subjects):
 # FreeSurfer license path:
 #      We first check whether FREESURFER_LICENSE is an environmnetal variable
-#      If not, 
+#      If not, we assume the path based on Mac OS organization
 if [ -z "$FREESURFER_LICENSE" ]
 then fsLicense=/Applications/freesurfer/license.txt
 else fsLicense="$FREESURFER_LICENSE"
@@ -37,10 +38,10 @@ userID=$(id -u):$(id -g)
 
 
 ###   Get docker images:   ###
-docker pull cbinyu/heudiconv
-docker pull bids/validator
-docker pull cbinyu/bids_pydeface
-docker pull cbinyu/mriqc
+docker pull cbinyu/heudiconv:3.2
+docker pull bids/validator:1.4.3
+docker pull cbinyu/bids_pydeface:v2.0.3
+docker pull cbinyu/mriqc:0.15.0
 docker pull poldracklab/fmriprep:1.4.1
 
 # Also, download a couple of scripts used to fix or clean-up things:
