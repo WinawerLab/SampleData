@@ -21,6 +21,8 @@ subjectID=wlsubj042
 # System specific #
 # (These are the same for all studies/subjects):
 # FreeSurfer license path:
+#      We first check whether FREESURFER_LICENSE is an environmnetal variable
+#      If not, 
 if [ -z "$FREESURFER_LICENSE" ]
 then fsLicense=/Applications/freesurfer/license.txt
 else fsLicense="$FREESURFER_LICENSE"
@@ -39,7 +41,7 @@ docker pull cbinyu/heudiconv
 docker pull bids/validator
 docker pull cbinyu/bids_pydeface
 docker pull cbinyu/mriqc
-docker pull poldracklab/fmriprep:1.3.1
+docker pull poldracklab/fmriprep:1.4.1
 
 # Also, download a couple of scripts used to fix or clean-up things:
 curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/master/completeJSONs.sh
