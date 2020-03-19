@@ -1,6 +1,9 @@
 ## Run Noah Benson's reinotopic map atlas
 #   See retinotopy tutorial for details: https://nben.net/Retinotopy-Tutorial/#atlas-generation
 
+# Exit upon any error
+set -euxo pipefail
+
 ###   Get docker image:   ###
 #docker pull nben/neuropythy
 

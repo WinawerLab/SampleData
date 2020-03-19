@@ -4,8 +4,11 @@
 #   3. MRIQC
 #   4. FMRIPrep
 
-## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
+# Exit upon any error
+set -euxo pipefail
 
+
+## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
 source setup.sh
 
 # Go!

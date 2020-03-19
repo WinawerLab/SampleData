@@ -2,6 +2,9 @@
 #   1. DICOMS
 #   2. Extras (AddToBIDS)
 
+# Exit upon any error
+set -euxo pipefail
+
 source setup.sh
 
 curl -L --output "$SAMPLE_DATA_DIR/dicoms.zip"  https://osf.io/9up2d/download
