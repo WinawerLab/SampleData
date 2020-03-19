@@ -5,7 +5,7 @@
 #   4. FMRIPrep
 
 # Exit upon any error
-set -euxo pipefail
+set -exo pipefail
 
 
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
@@ -41,7 +41,7 @@ userID=$(id -u):$(id -g)
 
 
 ###   Get docker images:   ###
-docker pull cbinyu/heudiconv:3.2
+docker pull cbinyu/heudiconv:v3.2
 docker pull bids/validator:1.4.3
 docker pull cbinyu/bids_pydeface:v2.0.3
 docker pull cbinyu/mriqc:0.15.0
