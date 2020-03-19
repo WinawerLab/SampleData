@@ -71,8 +71,11 @@ docker run --name heudiconv_container \
 # Then the 'IntendedFor' and 'NumberOfVolumes' field were filled:
 ./completeJSONs.sh ${studyFolder}/sub-${subjectID}
 
+# heudiconv makes files read only
+#    We need some files to be writable, eg for defacing
+chmod -R u+wr,g+wr ${studyFolder}
 
-# We ran the BIDS-validator:
+# We run the BIDS-validator:
 docker run --name BIDSvalidation_container \
            --user $userID \
            --rm \
