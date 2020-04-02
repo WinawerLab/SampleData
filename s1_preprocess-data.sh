@@ -21,6 +21,7 @@ source setup.sh
 dcmFolder="$SAMPLE_DATA_DIR/dicoms"
 studyFolder="$SAMPLE_DATA_DIR/BIDS"
 subjectID=wlsubj042
+sessionID=01 
 
 # System specific #
 # (These are the same for all studies/subjects):
@@ -67,6 +68,7 @@ docker run --name heudiconv_container \
                -d /dataIn/{subject}/*/*.dcm \
                -f cbi_heuristic \
                -s ${subjectID} \
+               -ss ${sessionID} \
                -c dcm2niix \
                -b \
                -o /dataOut \
