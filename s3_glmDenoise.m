@@ -1,8 +1,11 @@
 % To run GLM denoise on sample data
+
 tbUse WinawerLab_SampleData;
 
 % Convert gifti files to mgz files
-projectDir = pwd;
+projectDir = fullfile(getenv('SAMPLE_DATA_DIR'), 'BIDS');
+
+assert(exist(projectDir, 'dir')>0);
 
 cd (fullfile(projectDir, 'derivatives', 'fmriprep','sub-wlsubj042', 'ses-01', 'func'));
 
@@ -36,6 +39,6 @@ bidsGLM(projectDir, subject, session, tasks, runnums, ...
 % To get images of the GLM denoise output, run the following python command 
 pngprocess = which('GLMdenoisePNGprocess.py');
 figurepth  = fullfile(projectDir, 'derivatives', 'GLMdenoise', modelType, ...
-    sprintf('sub-%s', sub), sprintf('ses-%s', ses), 'figures');
+    sprintf('sub-%s', subject), sprintf('ses-%s', session), 'figures');
 system(sprintf('python %s %s', pngprocess, figurepth));
 

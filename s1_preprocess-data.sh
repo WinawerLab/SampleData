@@ -74,7 +74,7 @@ docker run --name heudiconv_container \
                -c dcm2niix \
                -b \
                -o /dataOut \
-               --overwrite
+               --overwrite \
            > ${logFolder}/sub-${subjectID}_extraction.log 2>&1    
                       
 # Then the 'IntendedFor' and 'NumberOfVolumes' field were filled:
@@ -104,7 +104,7 @@ docker run --name deface_container \
                /data \
                /data/derivatives \
                participant \
-               --participant_label ${subjectID}
+               --participant_label ${subjectID} \
            > ${logFolder}/sub-${subjectID}_pydeface.log 2>&1
 
 ###   MRIQC:   ###
@@ -120,8 +120,9 @@ docker run --name mriqc_container \
                --ica \
                --verbose-reports \
                --fft-spikes-detector \
-               --participant_label ${subjectID}
+               --participant_label ${subjectID} \
            > ${logFolder}/sub-${subjectID}_mriqc_participant.log 2>&1
+           
 docker run --name mriqc_container \
            --user $userID \
            --rm \
@@ -129,7 +130,7 @@ docker run --name mriqc_container \
            cbinyu/mriqc \
                /data \
                /data/derivatives/mriqc_reports \
-               group
+               group \
            > ${logFolder}/sub-${subjectID}_mriqc_group.log 2>&1
 
 ###   fMRIPrep:   ###
@@ -148,5 +149,5 @@ docker run --name fmriprep_container \
                --template-resampling-grid "native" \
                --t2s-coreg \
                --participant_label ${subjectID} \
-               --no-submm-recon
+               --no-submm-recon \
            > ${logFolder}/sub-${subjectID}_fMRIPrep.log 2>&1

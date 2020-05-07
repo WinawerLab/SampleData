@@ -20,8 +20,8 @@ cd DownloadedData
 
 ../s2_addToBIDS.sh
 
-matlab -nodisplay -nodesktop -nosplash ../s3_glmDenoise.m
+matlab -nodisplay -nodesktop -nosplash -r s3_glmDenoise
 
-matlab -nodisplay -nodesktop -nosplash ../s4_prf.m
+matlab -nodisplay -nodesktop -nosplash s4_prf
 
 ../s5_Benson_Atlases.sh

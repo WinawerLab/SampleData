@@ -26,4 +26,4 @@ docker run --name BIDSvalidation_container \
            --volume $studyFolder:/data:ro \
            bids/validator \
                /data \
-           > ${studyFolder}/derivatives/bids-validator_report.txt 2>&1
+           >> ${studyFolder}/derivatives/bids-validator_report.txt 2>&1
