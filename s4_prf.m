@@ -3,7 +3,7 @@ tbUse WinawerLab_SampleData;
 
 %% 2. Convert gifti files to mgz files (here we do it in Matlab)
 % Note that we might have already done this for the glmDenoise step.
-projectDir = pwd; % E.g., '/Volumes/server/Projects/SampleData/BIDS';
+projectDir = fullfile(getenv('SAMPLE_DATA_DIR'), 'BIDS');
 
 cd (fullfile(projectDir, 'derivatives', 'fmriprep','sub-wlsubj042', 'ses-01', 'func'));
 
