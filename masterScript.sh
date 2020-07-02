@@ -8,9 +8,13 @@ function die {
     exit 1
 }
 
-# Sanity checks:
+# Check dependencies:
+#	Check for alias to open matlab from shell
 [ -z "`which matlab`" ] && die "matlab is not on the path!"
+#	Check for freesurfer license file
 [ -r /Applications/freesurfer/license.txt ] || die "No freesurfer license found!"
+#	Check for python environment
+[ -z "conda activate winawerlab" ] || die "Unable to find winawerlab python environment"
 
 [ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
 
