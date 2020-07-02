@@ -19,10 +19,10 @@ python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <con
 [ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
 
 # script 1, shell
-s1_preprocess-data.sh
+./s1_preprocess-data.sh
 
 # script 2, shell
-s2_addToBIDS.sh
+./s2_addToBIDS.sh
 
 # script 3, matlab
 source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s3_glmDenoise
@@ -31,4 +31,4 @@ source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s3_glmDenoise
 source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s4_prf
 
 # script 5, shell
-s5_Benson_Atlases.sh
+./s5_Benson_Atlases.sh
