@@ -14,18 +14,21 @@ function die {
 #	Check for freesurfer license file
 [ -r /Applications/freesurfer/license.txt ] || die "No freesurfer license found!"
 #	Check for python environment
-[ -z "conda activate winawerlab" ] || die "Unable to find winawerlab python environment"
+python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <conda activate winawerlab> prior to masterScript."
 
 [ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
 
-cd DownloadedData
+# script 1, shell
+s1_preprocess-data.sh
 
-../s1_preprocess-data.sh
+# script 2, shell
+s2_addToBIDS.sh
 
-../s2_addToBIDS.sh
-
+# script 3, matlab
 source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s3_glmDenoise
 
+# script 4, matlab
 source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s4_prf
 
-../s5_Benson_Atlases.sh
+# script 5, shell
+s5_Benson_Atlases.sh
