@@ -25,10 +25,10 @@ python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <con
 ./s2_addToBIDS.sh
 
 # script 3, matlab
-source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s3_glmDenoise
+source setup.sh; matlab -nodisplay -nodesktop -nosplash -r "s3_glmDenoise; exit;"
 
 # script 4, matlab
-source setup.sh; matlab -nodisplay -nodesktop -nosplash -r s4_prf
+source setup.sh; matlab -nodisplay -nodesktop -nosplash -r "s4_prf; exit"
 
 # script 5, shell
 ./s5_Benson_Atlases.sh
