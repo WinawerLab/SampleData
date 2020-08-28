@@ -67,8 +67,8 @@ docker run --name heudiconv_container \
                -d /dataIn/{subject}/*/*.dcm \
                -f cbi_heuristic \
                -s ${SUBJECT_ID} \
-              
-               -c dcm2niix \S
+               -ss ${SESSION_ID} \
+               -c dcm2niix \
                -b \
                -o /dataOut \
                --overwrite \
