@@ -63,7 +63,7 @@ docker run --name heudiconv_container \
            --rm \
            --volume $dcmFolder:/dataIn:ro \
            --volume $STUDY_DIR:/dataOut \
-           cbinyu/heudiconv \
+           cbinyu/heudiconv:v3.2 \
                -d /dataIn/{subject}/*/*.dcm \
                -f cbi_heuristic \
                -s ${SUBJECT_ID} \
@@ -82,15 +82,17 @@ docker run --name heudiconv_container \
 chmod -R u+wr,g+wr ${STUDY_DIR}
 
 # We run the BIDS-validator:
+
 docker run --name BIDSvalidation_container \
            --user $userID \
            --rm \
            --volume $STUDY_DIR:/data:ro \
-           bids/validator \
+           bids/validator:1.4.3 \
                /data \
            > ${logFolder}/bids-validator_report.txt 2>&1                   
            # For BIDS compliance, we want the validator report to go to the top level of derivatives. But for debugging, we want all logs from a given script to go to a script-specific folder
            #> ${STUDY_DIR}/derivatives/bids-validator_report.txt 2>&1
+
 
 
 ###   Deface:   ###
@@ -99,7 +101,7 @@ docker run --name deface_container \
            --user $userID \
            --rm \
            --volume $STUDY_DIR:/data \
-           cbinyu/bids_pydeface \
+           cbinyu/bids_pydeface:v2.0.3 \
                /data \
                /data/derivatives \
                participant \
@@ -112,7 +114,7 @@ docker run --name mriqc_container \
            --user $userID \
            --rm \
            --volume $STUDY_DIR:/data \
-           cbinyu/mriqc \
+           cbinyu/mriqc:0.15.0 \
                /data \
                /data/derivatives/mriqc_reports \
                participant \
@@ -139,7 +141,7 @@ docker run --name fmriprep_container \
            --rm \
            --volume $STUDY_DIR:/data \
            --volume ${fsLicenseFolder}:/FSLicenseFolder:ro \
-           poldracklab/fmriprep:1.3.1 \
+           poldracklab/fmriprep:1.4.1 \
                /data \
                /data/derivatives \
                participant \
