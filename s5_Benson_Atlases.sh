@@ -15,6 +15,8 @@ ses=01
 # aprf_run is used by the bayesian inference
 aprf_run=coarse 
 
+cd DownloadedData
+
 mkdir -p "$(pwd)/BIDS/derivatives/atlases/sub-${sub}"
 
 docker run --rm -it \
@@ -29,26 +31,30 @@ docker run --rm -it \
            nben/neuropythy register_retinotopy "sub-${sub}" --verbose --max-input-eccen=12 \
                --surf-outdir="/bids/derivatives/atlases/sub-${sub}" \
                --vol-outdir="/bids/derivatives/atlases/sub-${sub}" \
-               --lh-theta=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/lh.angle.mgz \
-               --rh-theta=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/rh.angle.mgz \
-               --lh-eccen=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/lh.eccen.mgz \
-               --rh-eccen=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/rh.eccen.mgz \
-               --lh-radius=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/lh.sigma.mgz \
-               --rh-radius=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/rh.sigma.mgz \
-               --lh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/lh.vexpl.mgz \
-               --rh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/rh.vexpl.mgz
+               --surf-format="mgz" \
+               --lh-theta=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/lh.angle.mgz \
+               --rh-theta=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/rh.angle.mgz \
+               --lh-eccen=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/lh.eccen.mgz \
+               --rh-eccen=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/rh.eccen.mgz \
+               --lh-radius=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/lh.sigma.mgz \
+               --rh-radius=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/rh.sigma.mgz \
+               --lh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/lh.vexpl.mgz \
+               --rh-weight=/bids/derivatives/analyzePRF/${aprf_run}/sub-${sub}/ses-${ses}/rh.vexpl.mgz \
+
 
 # Make an ROI directory
 mkdir -p "$(pwd)/BIDS/derivatives/rois/sub-${sub}"
 docker run -i --rm \
-           -v "$(pwd)/BIDS/derivatives/freesurfer:/subjects" \
+           -v "$(pwd)/BIDS/derivatives/freesurfer/sub-${sub}:/subjects/${sub}" \
            -v "$(pwd)/BIDS:/bids" \
-           -v "$(pwd)/s6_subscript_rois.py:/runpy/script.py" \
+           -v "$(pwd)/../:/runpy/" \
            nben/neuropythy bash <<EOF
-python /runpy/script.py ${sub}
+python /runpy/s6_subscript_rois.py ${sub}
 EOF
 
 
+
+cd ..
 
 
 
