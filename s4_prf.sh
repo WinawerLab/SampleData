@@ -10,4 +10,4 @@ logFolder=${LOG_DIR}/s4
 
 mkdir -p $logFolder
 
-matlab -nodisplay -nodesktop -nosplash -r "s4_prf; exit;" > ${logFolder}/prf.log 2>&1
+matlab -nodisplay -nodesktop -nosplash -r "run ./subroutines/s4_prf.m; exit;" > ${logFolder}/prf.log 2>&1
