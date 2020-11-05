@@ -13,7 +13,7 @@ set -euxo pipefail
 sub=wlsubj042
 ses=01
 # aprf_run is used by the bayesian inference
-aprf_run=fine 
+aprf_run=coarse 
 
 cd DownloadedData
 
