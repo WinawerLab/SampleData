@@ -49,7 +49,7 @@ docker run -i --rm \
            -v "$(pwd)/BIDS:/bids" \
            -v "$(pwd)/../subroutines:/runpy/" \
            nben/neuropythy bash <<EOF
-python /runpy/s6_subscript_rois.py ${sub}
+python /runpy/subscript_rois.py ${sub}
 EOF
 
 
