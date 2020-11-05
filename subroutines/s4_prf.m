@@ -38,7 +38,7 @@ bidsAnalyzePRF(projectDir, subject, session, tasks, runnums, ...
 
 %%
 % run the full PRF analysis (optimze each voxel, can be many hours)
-bidsAnalyzePRF(projectDir, subject, session, tasks, runnums, ...
-       dataFolder, dataStr, apertureFolder, modelTypeFine, prfOptsPathFine, tr)
+%bidsAnalyzePRF(projectDir, subject, session, tasks, runnums, ...
+%       dataFolder, dataStr, apertureFolder, modelTypeFine, prfOptsPathFine, tr)
 
 
