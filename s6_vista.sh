@@ -9,4 +9,4 @@ logFolder=${LOG_DIR}/s7
 
 mkdir -p $logFolder
 
-matlab -nodisplay -nodesktop -nosplash -r "s7_vista; exit;" > ${logFolder}/vista.log 2>&1
+matlab -nodisplay -nodesktop -nosplash -r "./subroutines/s6_vista.m; exit;" > ${logFolder}/vista.log 2>&1
