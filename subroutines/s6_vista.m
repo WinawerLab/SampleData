@@ -13,7 +13,7 @@ runnumber               = 99;
 task                    = 'prf';
 
 
-mainDir                 = sprintf('./DownloadedData'); % points to a folder were your BIDS formated folder is sitting
+mainDir                 = sprintf('./../DownloadedData'); % points to a folder were your BIDS formated folder is sitting
 BidsDir                 = 'BIDS'; % name of the folder with derivatives
 projectDir              = sprintf('%s/%s/',mainDir,BidsDir);
 apertureFolder          = sprintf('%sderivatives/stim_apertures',projectDir);
