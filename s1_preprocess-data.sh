@@ -49,7 +49,7 @@ docker pull cbinyu/mriqc:0.15.0
 docker pull poldracklab/fmriprep:1.4.1
 
 # Also, download a couple of scripts used to fix or clean-up things:
-curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/master/completeJSONs.sh
+curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/4093899a359fb1307b2322584f2a6816482cbbd8/completeJSONs.sh
 chmod 755 ./completeJSONs.sh
 
 # Set up some derived variables that we'll use later:
@@ -73,15 +73,15 @@ docker run --name heudiconv_container \
                -o /dataOut \
                --overwrite \
            > ${logFolder}/sub-${SUBJECT_ID}_extraction.log 2>&1    
-                      
-# Then the 'IntendedFor' and 'NumberOfVolumes' field were filled:
-./completeJSONs.sh ${STUDY_DIR}/sub-${SUBJECT_ID}
 
 # heudiconv makes files read only
 #    We need some files to be writable, eg for defacing
 chmod -R u+wr,g+wr ${STUDY_DIR}
 
-# We run the BIDS-validator:
+# Then the 'IntendedFor' and 'NumberOfVolumes' field were filled:
+./completeJSONs.sh ${STUDY_DIR}/sub-${SUBJECT_ID}/ses-${SESSION_ID}
+
+## We run the BIDS-validator:
 
 docker run --name BIDSvalidation_container \
            --user $userID \
