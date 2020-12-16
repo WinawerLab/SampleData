@@ -53,7 +53,9 @@ Sub-scripts:
 ## Dependencies:
 - matlab (version??) must be on the system path (MATLAB 9.6?)
 - [ToolboxToolbox](https://github.com/ToolboxHub/ToolboxToolbox), for managing
-  matlab dependencies. Follow its README for setting it up.
+  matlab dependencies. See the [Winawer lab
+  wiki](https://wikis.nyu.edu/display/winawerlab/ToolboxToolbox) for info on how
+  to set it up.
   - [Winawer lab Toolbox
     Registry](https://github.com/WinawerLab/ToolboxRegistry).
 - docker
