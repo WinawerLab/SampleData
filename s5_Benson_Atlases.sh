@@ -5,7 +5,7 @@
 set -euxo pipefail
 
 ###   Get docker image:   ###
-#docker pull nben/neuropythy
+docker pull nben/neuropythy # do want to specify a version of neuropythy?
 
 ### Run docker
 #
@@ -15,16 +15,19 @@ ses=01
 # aprf_run is used by the bayesian inference
 aprf_run=coarse 
 
+# replace cd argument with variale
 cd DownloadedData
 
 mkdir -p "$(pwd)/BIDS/derivatives/atlases/sub-${sub}"
 
+# Make an anatomy-derived retinotopic atlas
 docker run --rm -it \
            -v "$(pwd)/BIDS/derivatives/freesurfer:/subjects/" \
            -v "$(pwd)/BIDS:/bids" \
            nben/neuropythy atlas --verbose "sub-${sub}" \
                --output-path="/bids/derivatives/atlases/sub-${sub}"
 
+# Make a Bayesian atlas using functional and anatomical data
 docker run --rm -it \
            -v "$(pwd)/BIDS/derivatives/freesurfer:/subjects" \
            -v "$(pwd)/BIDS:/bids" \
@@ -48,11 +51,9 @@ docker run -i --rm \
            -v "$(pwd)/BIDS/derivatives/freesurfer/sub-${sub}:/subjects/${sub}" \
            -v "$(pwd)/BIDS:/bids" \
            -v "$(pwd)/../subroutines:/runpy/" \
-           nben/neuropythy bash <<EOF
-python /runpy/subscript_rois.py ${sub}
-EOF
-
-
+           nben/neuropythy bash <<EOF 
+           python /runpy/subscript_rois.py ${sub} 
+           EOF
 
 cd ..
 
