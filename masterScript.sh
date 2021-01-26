@@ -16,9 +16,9 @@ function die {
 #	Check for python environment
 python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <conda activate winawerlab> prior to masterScript."
 
-[ -r DownloadedData/dicoms.zip ] || ./s0_download-data.sh "$PWD/DownloadedData"
 
 # run scripts 
+./s0_download-data.sh
 ./s1_preprocess-data.sh
 ./s2_addToBIDS.sh
 ./s3_glmDenoise.sh
