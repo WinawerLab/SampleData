@@ -17,17 +17,17 @@ ses=$SESSION_ID
 aprf_run=coarse 
 
 
-mkdir -p "$(SAMPLE_DATA_DIR)/BIDS/derivatives/atlases/sub-${sub}"
+mkdir -p "$SAMPLE_DATA_DIR/BIDS/derivatives/atlases/sub-${sub}"
 
 docker run --rm -it \
-           -v "$(SAMPLE_DATA_DIR)/BIDS/derivatives/freesurfer:/subjects/" \
-           -v "$(SAMPLE_DATA_DIR)/BIDS:/bids" \
+           -v "$SAMPLE_DATA_DIR/BIDS/derivatives/freesurfer:/subjects/" \
+           -v "$SAMPLE_DATA_DIR/BIDS:/bids" \
            nben/neuropythy atlas --verbose "sub-${sub}" \
                --output-path="/bids/derivatives/atlases/sub-${sub}"
 
 docker run --rm -it \
-           -v "$(SAMPLE_DATA_DIR)/BIDS/derivatives/freesurfer:/subjects" \
-           -v "$(SAMPLE_DATA_DIR)/BIDS:/bids" \
+           -v "$SAMPLE_DATA_DIR/BIDS/derivatives/freesurfer:/subjects" \
+           -v "$SAMPLE_DATA_DIR/BIDS:/bids" \
            nben/neuropythy register_retinotopy "sub-${sub}" --verbose --max-input-eccen=12 \
                --surf-outdir="/bids/derivatives/atlases/sub-${sub}" \
                --vol-outdir="/bids/derivatives/atlases/sub-${sub}" \
