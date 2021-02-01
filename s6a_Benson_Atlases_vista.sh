@@ -4,6 +4,9 @@
 # Exit upon any error
 set -euxo pipefail
 
+DIRN=`dirname $0`
+source $DIRN/setup.sh ${1-}
+
 ###   Get docker image:   ###
 #docker pull nben/neuropythy
 

@@ -5,8 +5,8 @@
 # Exit upon any error
 set -euxo pipefail
 
-source setup.sh
-
+DIRN=`dirname $0`
+source $DIRN/setup.sh ${1-}
 
 
 #Downlad
