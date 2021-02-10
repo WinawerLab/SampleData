@@ -65,9 +65,7 @@ Sub-scripts:
   - [Winawer lab Toolbox
     Registry](https://github.com/WinawerLab/ToolboxRegistry).
 - docker
-- freesurfer license must be at `/Applications/freesurfer/license.txt`
-  (note that currently this will fail in Linux) or at the location
-  specified by the environmental variable `$FREESURFER_LICENSE`
+- freesurfer license must be at $FREESURFER_HOME/license.txt` (where $FREESURFER_HOME is an environmental variable specifying the path to the freesurfer application) or at the location specified by the environmental variable `$FREESURFER_LICENSE`
 - setup the `winawerlab` python environment, as described
   [here](https://wikis.nyu.edu/display/winawerlab/Python+and+Conda)
   (you can activate it, following step 4, but you shouldn't need to if
