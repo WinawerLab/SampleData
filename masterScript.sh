@@ -23,6 +23,5 @@ python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <con
 ./s1_preprocess-data.sh
 ./s2_addToBIDS.sh
 ./s3_glmDenoise.sh
-./s4a_vistaPRF.sh
-./s4b_analyzePRF.sh
+./s4_vistaPRF.sh
 ./s5_Benson_Atlases.sh
