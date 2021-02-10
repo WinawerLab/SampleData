@@ -5,6 +5,12 @@ Code related to the processing of the Winawer lab sample dataset
 The scripts in this directory present an example analysis of fMRI data like
 those often performed in the Winawer lab. 
 
+You can set the directory to put all data and analyses in by passing a path to
+any of the main scripts. Alternatively, if they're called with no arguments, the
+data directory is set to `DownloadedData/` within this directory or
+`scratch/$(whoami)/SampleData/DownloadedData` if `module list` runs without an
+error (and thus we think we're on a cluster).
+
 Main scripts:
 - `masterScript.sh`: checks for dependencies (matlab, freesurfer license, python
 environment) and calls the rest of the scripts in this section, in order. Takes

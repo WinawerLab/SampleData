@@ -10,7 +10,7 @@ set -exo pipefail
 
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
 DIRN=`dirname $0`
-source $DIRN/setup.sh
+source $DIRN/setup.sh ${1-}
 
 # Go!
 # Sample data from subject wlsubj042, acquired on DATE!?!?!?!

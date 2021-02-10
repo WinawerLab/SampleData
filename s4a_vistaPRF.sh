@@ -4,7 +4,8 @@
 set -euxo pipefail
 
 # Get the path to the sample data, defined as SAMPLE_DATA_DIR
-source setup.sh
+DIRN=`dirname $0`
+source $DIRN/setup.sh ${1-}
 logFolder=${LOG_DIR}/s4
 
 mkdir -p $logFolder
