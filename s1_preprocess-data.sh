@@ -30,7 +30,7 @@ mkdir -p $logFolder
 #      We first check whether FREESURFER_LICENSE is an environmnetal variable
 #      If not, we assume the path based on Mac OS organization
 if [ -z "$FREESURFER_LICENSE" ]
-then fsLicense=/Applications/freesurfer/license.txt
+then fsLicense=${FREESURFER_HOME}/license.txt
 else fsLicense="$FREESURFER_LICENSE"
 fi
 [ -r "$fsLicense" ] || {

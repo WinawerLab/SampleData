@@ -6,20 +6,18 @@
 # SAMPLE_DATA_DIR (though we'll add DownloadedData to it)
 if [ -z ${1-} ]
 then
-    # if called without an argument, check to see whether `module list` returns
-    # error code 0 (i.e., we're on a cluster (probably)).
-    module list >/dev/null 2>&1
-    if [ $? -eq 0 ]
+    # if called without an argument, check to see whether `module` is found on your path (i.e., we're on a cluster (probably)).
+    if [ -z $(which module) ] # 
     then
-        # if so, then set SAMPLE_DATA_DIR to a directory in the user's scratch
-        # directory
-        SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"
-    else
-        # else, set SAMPLE_DATA_DIR to a subfolder of directory that contains
+        # set SAMPLE_DATA_DIR to a subfolder of directory that contains
         # this file. we use some gobblegook from stack overflow as a means to
         # find the directory containing the current function:
         # https://stackoverflow.com/a/246128
         SAMPLE_DATA_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    else
+        # else, set SAMPLE_DATA_DIR to a directory in the user's scratch
+        # directory
+        SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"       
     fi
 else
     SAMPLE_DATA_DIR=$1

@@ -9,8 +9,7 @@ DIRN=`dirname $0`
 source $DIRN/setup.sh ${1-}
 
 
-#Downlad
-
+#Download
 if  [[ -f "$SAMPLE_DATA_DIR/dicoms.zip" && -f "$SAMPLE_DATA_DIR/AddThisToBIDS.zip" ]]; then
 
     echo "Data will not be downloaded - files already exist"
