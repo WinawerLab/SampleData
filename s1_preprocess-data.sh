@@ -11,6 +11,8 @@ set -exo pipefail
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
 DIRN=`dirname $0`
 source $DIRN/setup.sh ${1-}
+source "$CODE_DIR"/subroutines/utils.sh
+
 
 # Go!
 # Sample data from subject wlsubj042, acquired on DATE!?!?!?!
@@ -42,12 +44,14 @@ fi
 userID=$(id -u):$(id -g)
 
 
-###   Get docker images:   ###
-docker pull cbinyu/heudiconv:v3.2
-docker pull bids/validator:1.4.3
-docker pull cbinyu/bids_pydeface:v2.0.3
-docker pull cbinyu/mriqc:0.15.0
-docker pull poldracklab/fmriprep:1.4.1
+###   Get conatiner images:   ###
+container_pull cbinyu/heudiconv:v3.2
+container_pull bids/validator:1.4.3
+container_pull cbinyu/bids_pydeface:v2.0.3
+container_pull cbinyu/mriqc:0.15.0
+container_pull poldracklab/fmriprep:1.4.1
+
+exit 0
 
 # Also, download a couple of scripts used to fix or clean-up things:
 curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/4093899a359fb1307b2322584f2a6816482cbbd8/completeJSONs.sh
