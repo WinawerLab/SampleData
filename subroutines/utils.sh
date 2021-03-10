@@ -8,7 +8,7 @@ function which_software() {
 
 function singularity_pull() {
 	umask u=rwx,g=rx,o=rx
-	export SINGULARITY_CACHEDIR=/scratch/work/$USER/.singularity
+	export SINGULARITY_CACHEDIR=/scratch/$USER/.singularity
 	cd ~/singularity
 	source=${1%/*}
 	[ ${#source} -gt 0 ] && mkdir -p $source && cd $source
@@ -23,8 +23,6 @@ function container_pull() {
 	fi
 }
 
-
-}
 function container_run() {
 	if [[ $CONTAINER_SOFTWARE == DOCKER ]]; then
 		docker run $@
