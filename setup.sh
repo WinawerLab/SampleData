@@ -19,7 +19,9 @@ then
         # else, set SAMPLE_DATA_DIR to a directory in the user's scratch
         # directory
         SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"    
-        load_modules           
+        SINGULARITY_PULLFOLDER="/scratch/$(whoami)/Singularity"    
+        load_modules
+
     else
         # set SAMPLE_DATA_DIR to a subfolder of directory that contains
         # this file. we use some gobblegook from stack overflow as a means to
@@ -53,6 +55,7 @@ export STUDY_DIR
 export LOG_DIR
 export CODE_DIR
 export CONTAINER_SOFTWARE
+export SINGULARITY_PULLFOLDER
 
 echo $SUBJECT_ID
 echo $SESSION_ID
@@ -61,6 +64,7 @@ echo $STUDY_DIR
 echo $LOG_DIR
 echo $CODE_DIR
 echo $CONTAINER_SOFTWARE
+echo $SINGULARITY_PULLFOLDER
 
 # debug
 #  echo $CLUSTER 
