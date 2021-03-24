@@ -22,7 +22,7 @@ userID=$(id -u):$(id -g)
 
 
 # Run the docker!
-docker run --name BIDSvalidation_container \
+container_run --name BIDSvalidation_container \
            --user $userID \
            --rm \
            --volume $STUDY_DIR:/data:ro \
