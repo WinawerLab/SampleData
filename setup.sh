@@ -19,7 +19,8 @@ then
         # else, set SAMPLE_DATA_DIR to a directory in the user's scratch
         # directory
         SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"    
-        SINGULARITY_PULLFOLDER="/scratch/$(whoami)/Singularity"    
+        SINGULARITY_PULLFOLDER="/scratch/$(whoami)/Singularity" 
+        mkdir -p $SINGULARITY_PULLFOLDER 
         load_modules
 
     else
