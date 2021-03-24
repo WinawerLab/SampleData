@@ -1,3 +1,11 @@
+function on_cluster() {
+	if [[ "$CLUSTER" == "GREENE" ]]; then
+		echo TRUE
+	else
+		echo FALSE
+	fi
+}
+
 function which_software() {	
 	if [[ "$CLUSTER" == "GREENE" ]]; then
 		echo SINGULARITY
