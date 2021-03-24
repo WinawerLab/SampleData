@@ -4,27 +4,24 @@
 # Exit upon any error
 set -euxo pipefail
 
-###   Get docker image:   ###
-#docker pull nben/neuropythy
+###   Get container image:   ###
+container_pull nben/neuropythy
 
 ### Run docker
 
 sub=$SUBJECT_ID
 ses=$SESSION_ID
 
-# vistasoft is used by the bayesian inference
-
-
-
 mkdir -p "$SAMPLE_DATA_DIR/BIDS/derivatives/atlases/sub-${sub}"
 
-docker run --rm -it \
+container_run --rm -it \
            -v "$SAMPLE_DATA_DIR/BIDS/derivatives/freesurfer:/subjects/" \
            -v "$SAMPLE_DATA_DIR/BIDS:/bids" \
            nben/neuropythy atlas --verbose "sub-${sub}" \
                --output-path="/bids/derivatives/atlases/sub-${sub}"
 
-docker run --rm -it \
+# apply the bayesian algorithm to vistasoft prf solutions, stoerd in the folder prfanalyze-vista
+container_run --rm -it \
            -v "$SAMPLE_DATA_DIR/BIDS/derivatives/freesurfer:/subjects" \
            -v "$SAMPLE_DATA_DIR/BIDS:/bids" \
            nben/neuropythy register_retinotopy "sub-${sub}" --verbose --max-input-eccen=12 \
@@ -43,19 +40,10 @@ docker run --rm -it \
 
 # Make an ROI directory
 mkdir -p "$SAMPLE_DATA_DIR/BIDS/derivatives/rois/sub-${sub}"
-docker run -i --rm \
+container_run -i --rm \
            -v "$SAMPLE_DATA_DIR/BIDS/derivatives/freesurfer/sub-${sub}:/subjects/${sub}" \
            -v "$SAMPLE_DATA_DIR/BIDS:/bids" \
            -v "$SAMPLE_DATA_DIR/../subroutines:/runpy/" \
            nben/neuropythy bash <<EOF
 python /runpy/subscript_rois.py ${sub}
 EOF
-
-
-
-
-
-
-
-
-
