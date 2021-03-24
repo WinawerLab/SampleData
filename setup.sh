@@ -18,7 +18,8 @@ then
     then
         # else, set SAMPLE_DATA_DIR to a directory in the user's scratch
         # directory
-        SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"               
+        SAMPLE_DATA_DIR="/scratch/$(whoami)/SampleData"    
+        load_modules           
     else
         # set SAMPLE_DATA_DIR to a subfolder of directory that contains
         # this file. we use some gobblegook from stack overflow as a means to

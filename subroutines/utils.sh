@@ -7,10 +7,16 @@ function on_cluster() {
 }
 
 function which_software() {	
-	if [[ "$CLUSTER" == "GREENE" ]]; then
+	if [[ "$(on_cluster)" == "TRUE" ]]; then
 		echo SINGULARITY
 	else
 		echo DOCKER
+	fi
+}
+
+function load_modules() {
+	if [[ "$(on_cluster)" == "TRUE" ]]; then
+		module load freesurfer/6.0.0
 	fi
 }
 
