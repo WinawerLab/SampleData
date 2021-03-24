@@ -22,7 +22,6 @@ function load_modules() {
 
 function singularity_pull() {
 	umask u=rwx,g=rx,o=rx
-	export SINGULARITY_CACHEDIR=/scratch/$USER/.singularity 
 	singularity pull docker://${1}
 }
 
