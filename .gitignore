@@ -1,3 +1,4 @@
 # MAC OS hidden directory files
 *.DS_Store
 completeJSONs.sh
+DownloadedData/*
