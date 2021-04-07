@@ -71,5 +71,3 @@ echo $SINGULARITY_PULLFOLDER
 #  echo $CLUSTER 
 #  echo $(on_cluster)
 # exit 0
-
- 

@@ -17,6 +17,7 @@ function which_software() {
 function load_modules() {
 	if [[ "$(on_cluster)" == "TRUE" ]]; then
 		module load freesurfer/6.0.0
+                module load matlab/2021a
 	fi
 }
 

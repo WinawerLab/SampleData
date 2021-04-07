@@ -1,4 +1,5 @@
 #! /bin/bash
+source setup.sh
 
 # Exit upon any error
 set -euxo pipefail

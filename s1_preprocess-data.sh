@@ -26,6 +26,7 @@ logFolder=${LOG_DIR}/s1
 
 mkdir -p $logFolder
 
+fsLicense=$(fsLicensePath)
 # System specific #
 # (These are the same for all studies/subjects):
 # FreeSurfer license path:
