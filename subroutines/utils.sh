@@ -41,3 +41,19 @@ function container_run() {
 		singularity run $@
 	fi
 }
+
+function fsLicensePath() {
+# FreeSurfer license path:
+#      We first check whether FREESURFER_LICENSE is an environmnetal variable
+#      If not, we assume the path based on Mac OS organization
+if [ -z "$FREESURFER_LICENSE" ]
+then fsLicense=${FREESURFER_HOME}/license.txt
+else fsLicense="$FREESURFER_LICENSE"
+fi
+[ -r "$fsLicense" ] || {
+    echo "FreeSurfer license (${fsLicense}) not found!"
+    echo "You can set a custom license path by storing it in the environment variable FREESURFER_LICENSE"
+    exit 1
+}
+echo $fsLicense
+}

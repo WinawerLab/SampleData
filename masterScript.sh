@@ -2,7 +2,7 @@
 source setup.sh
 
 # Exit upon any error
-set -euxo pipefail
+set -exo pipefail
 
 function die {
     echo "$*"
@@ -13,7 +13,7 @@ function die {
 #	Check for alias to open matlab from shell
 [ -z "`which matlab`" ] && die "matlab is not on the path!"
 #	Check for freesurfer license file
-[ -r /Applications/freesurfer/license.txt ] || die "No freesurfer license found!"
+[ -r $(fsLicensePath) ] || die "No freesurfer license found!"
 #	Check for python environment
 python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <conda activate winawerlab> prior to masterScript."
 
