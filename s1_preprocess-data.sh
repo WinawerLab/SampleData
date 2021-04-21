@@ -34,11 +34,11 @@ userID=$(id -u):$(id -g)
 
 
 ###   Get conatiner images:   ###
-# container_pull cbinyu/heudiconv:v3.2
-# container_pull bids/validator:1.4.3
-# container_pull cbinyu/bids_pydeface:v2.0.3
-# container_pull cbinyu/mriqc:0.15.0
-# container_pull poldracklab/fmriprep:1.4.1
+container_pull cbinyu/heudiconv:v3.2
+container_pull bids/validator:1.4.3
+container_pull cbinyu/bids_pydeface:v2.0.3
+container_pull cbinyu/mriqc:0.15.0
+container_pull poldracklab/fmriprep:1.4.1
 
 # Also, download a couple of scripts used to fix or clean-up things:
 curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/4093899a359fb1307b2322584f2a6816482cbbd8/completeJSONs.sh
