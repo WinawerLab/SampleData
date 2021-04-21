@@ -34,11 +34,29 @@ function container_pull() {
 	fi
 }
 
-function container_run() {
+function container_run_simple() {
 	if [[ $CONTAINER_SOFTWARE == DOCKER ]]; then
 		docker run $@
 	else
 		singularity run $@
+	fi
+}
+
+function container_run() {
+	if [[ $CONTAINER_SOFTWARE == DOCKER ]]; then
+		docker run \
+		--user "$(id -u):$(id -g)" \
+		--rm \
+		-v $1 \
+		-v $2 \
+		$3 \
+		$5
+	else
+		singularity run \
+		-B $1 \
+		-B $2 \
+		$4 \
+		$5
 	fi
 }
 
