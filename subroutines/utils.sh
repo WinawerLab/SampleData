@@ -23,7 +23,7 @@ function load_modules() {
 
 function singularity_pull() {
 	umask u=rwx,g=rx,o=rx
-	singularity pull docker://${1}
+	singularity pull --force docker://${1}
 }
 
 function container_pull() {
