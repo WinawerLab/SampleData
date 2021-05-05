@@ -1,7 +1,7 @@
 #! /bin/bash
 #add in the stimfiles and other extras
 # Exit upon any error
-set -euxo pipefail
+set -euo pipefail
 
 # Get the path to the sample data, defined as SAMPLE_DATA_DIR
 source setup.sh

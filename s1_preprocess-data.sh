@@ -5,7 +5,7 @@
 #   4. FMRIPrep
 
 # Exit upon any error
-set -exo pipefail
+set -euo pipefail
 
 
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
@@ -79,7 +79,7 @@ container_run \
            $STUDY_DIR:/data:ro \
            $STUDY_DIR:/ignore:ro \
            bids/validator:1.4.3 \
-           ${SINGULARITY_PULLFOLDER}/validator_v1.4.3.sif \
+           ${SINGULARITY_PULLFOLDER}/validator_1.4.3.sif \
                "/data" \
            > ${logFolder}/bids-validator_report.txt 2>&1                   
            # For BIDS compliance, we want the validator report to go to the top level of derivatives. But for debugging, we want all logs from a given script to go to a script-specific folder

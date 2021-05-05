@@ -2,7 +2,7 @@
 #add in the stimfiles and other extras
 
 # Exit upon any error
-set -euxo pipefail
+set -euo pipefail
 
 # Check for python environment
 python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <conda activate winawerlab> prior to masterScript."

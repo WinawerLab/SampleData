@@ -2,7 +2,7 @@
 #   See retinotopy tutorial for details: https://nben.net/Retinotopy-Tutorial/#atlas-generation
 
 # Exit upon any error
-set -euxo pipefail
+set -euo pipefail
 
 ###   Get container image:   ###
 container_pull nben/neuropythy
