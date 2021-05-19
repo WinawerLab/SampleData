@@ -93,7 +93,7 @@ container_run \
            $STUDY_DIR:/data \
            $STUDY_DIR:/ignore:ro \
            cbinyu/bids_pydeface:v2.0.3 \
-           ${SINGULARITY_PULLFOLDER}/bids_pydeface_2.0.3.sif \
+           ${SINGULARITY_PULLFOLDER}/bids_pydeface_v2.0.3.sif \
                "/data \
                /data/derivatives \
                participant \
