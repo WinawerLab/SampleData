@@ -64,7 +64,7 @@ function fsLicensePath() {
 # FreeSurfer license path:
 #      We first check whether FREESURFER_LICENSE is an environmnetal variable
 #      If not, we assume the path based on Mac OS organization
-if [ -z "${FREESURFER_LICENSE+empty}" ]
+if [ -z "${FREESURFER_LICENSE+set}" ]
 then fsLicense=${FREESURFER_HOME}/license.txt
 else fsLicense="$FREESURFER_LICENSE"
 fi
