@@ -37,7 +37,7 @@ userID=$(id -u):$(id -g)
 container_pull cbinyu/heudiconv:v3.2
 container_pull bids/validator:1.4.3
 container_pull cbinyu/bids_pydeface:v2.0.3
-container_pull cbinyu/mriqc:0.15.0
+container_pull poldracklab/mriqc:0.16.1
 container_pull poldracklab/fmriprep:1.4.1
 
 # Also, download a couple of scripts used to fix or clean-up things:
@@ -106,7 +106,7 @@ container_run \
            $STUDY_DIR:/data \
            $STUDY_DIR:/ignore:ro \
            cbinyu/mriqc:0.15.0 \
-           ${SINGULARITY_PULLFOLDER}/mriqc_0.15.0.sif \
+           ${SINGULARITY_PULLFOLDER}/mriqc_0.16.1.sif \
                "/data \
                /data/derivatives/mriqc_reports \
                participant \
@@ -120,7 +120,7 @@ container_run \
            $STUDY_DIR:/data \
            $STUDY_DIR:/ignore:ro \
            cbinyu/mriqc:0.15.0 \
-           ${SINGULARITY_PULLFOLDER}/mriqc_0.15.0.sif \
+           ${SINGULARITY_PULLFOLDER}/mriqc_0.16.1.sif \
                "/data \
                /data/derivatives/mriqc_reports \
                group" \
