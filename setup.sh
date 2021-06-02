@@ -29,6 +29,7 @@ then
         # find the directory containing the current function:
         # https://stackoverflow.com/a/246128
         SAMPLE_DATA_DIR="$CODE_DIR"        
+	SINGULARITY_PULLFOLDER=""
     fi
 else
     SAMPLE_DATA_DIR=$1
