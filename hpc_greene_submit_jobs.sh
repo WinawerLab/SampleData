@@ -3,7 +3,7 @@
 #SBATCH --job-name=sampledata
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=30
-#SBATCH --mem=32g
+#SBATCH --mem=60g
 #SBATCH --time=48:00:00
 #SBATCH --output=/scratch/%u/logs/out.txt # Define output log location
 #SBATCH --error=/scratch/%u/logs/err.txt # and the error logs for when it inevitably crashes
