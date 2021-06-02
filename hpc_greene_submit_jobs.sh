@@ -12,3 +12,4 @@
 
 ./s0_download-data.sh
 ./s1_preprocess-data.sh
+./s2_addToBIDS.sh
