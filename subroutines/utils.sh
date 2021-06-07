@@ -1,5 +1,5 @@
 function on_cluster() {
-	if [[ "$CLUSTER" == "GREENE" ]]; then
+	if [[ "${CLUSTER-empty}" == "GREENE" ]]; then
 		echo TRUE
 	else
 		echo FALSE
