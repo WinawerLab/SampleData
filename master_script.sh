@@ -18,9 +18,9 @@ function die {
 python -c 'import PIL, neuropythy, matplotlib' || die "In command line, run <conda activate winawerlab> prior to masterScript."
 
 # run scripts
-./s0_download-data.sh ${1-}
-./s1_preprocess-data.sh ${1-}
-./s2_addToBIDS.sh ${1-}
-./s3_glmDenoise.sh ${1-}
-./s4_vistaPRF.sh ${1-}
-./s5_Benson_Atlases.sh ${1-}
+./s0_download_data.sh ${1-}
+./s1_preprocess_data.sh ${1-}
+./s2_add_to_bids.sh ${1-}
+./s3_glm_denoise.sh ${1-}
+./s4_vista_prf.sh ${1-}
+./s5_benson_atlases.sh ${1-}

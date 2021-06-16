@@ -9,4 +9,4 @@ logFolder=${LOG_DIR}/s4
 
 mkdir -p $logFolder
 
-matlab -nodisplay -nodesktop -nosplash -r "run ./subroutines/s4_vistaPRF.m; exit" > ${logFolder}/vistaPRF.log 2>&1
+matlab -nodisplay -nodesktop -nosplash -r "run ./subroutines/s4_vista_prf.m; exit" > ${logFolder}/vistaPRF.log 2>&1

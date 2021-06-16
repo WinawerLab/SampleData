@@ -11,7 +11,7 @@ set -euo pipefail
 ## Change lines for Study/subject/system. Also add lines for stim files, TSV fles, and eye tracking files. Then try running it on our sample data.
 DIRN=`dirname $0`
 source $DIRN/setup.sh ${1-}
-source "$CODE_DIR"/subroutines/utils.sh
+source "$CODE_DIR"/Subroutines/utils.sh
 
 
 # Go!
@@ -34,15 +34,12 @@ userID=$(id -u):$(id -g)
 
 
 ###   Get conatiner images:   ###
-container_pull cbinyu/heudiconv:v3.2
+container_pull cbinyu/heudiconv:v3.7.0
 container_pull bids/validator:1.4.3
 container_pull cbinyu/bids_pydeface:v2.0.3
 container_pull poldracklab/mriqc:0.16.1
 container_pull poldracklab/fmriprep:1.4.1
 
-# Also, download a couple of scripts used to fix or clean-up things:
-curl -L -o ./completeJSONs.sh https://raw.githubusercontent.com/cbinyu/misc_preprocessing/4093899a359fb1307b2322584f2a6816482cbbd8/completeJSONs.sh
-chmod 755 ./completeJSONs.sh
 
 # Set up some derived variables that we'll use later:
 fsLicenseBasename=$(basename $fsLicense)
@@ -54,8 +51,8 @@ fsLicenseFolder=${fsLicense%$fsLicenseBasename}
 container_run \
            $dcmFolder:/dataIn:ro \
            $STUDY_DIR:/dataOut \
-           cbinyu/heudiconv:v3.2 \
-           ${SINGULARITY_PULLFOLDER}/heudiconv_v3.2.sif \
+           cbinyu/heudiconv:v3.7.0 \
+           ${SINGULARITY_PULLFOLDER}/heudiconv_v3.7.0.sif \
                "-d /dataIn/{subject}/*/*.dcm \
                -f cbi_heuristic \
                -s ${SUBJECT_ID} \
@@ -69,9 +66,6 @@ container_run \
 # heudiconv makes files read only
 #    We need some files to be writable, eg for defacing
 chmod -R u+wr,g+wr ${STUDY_DIR}
-
-# Then the 'IntendedFor' and 'NumberOfVolumes' field were filled:
-./completeJSONs.sh ${STUDY_DIR}/sub-${SUBJECT_ID}/ses-${SESSION_ID}
 
 ## We run the BIDS-validator:
 

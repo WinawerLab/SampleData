@@ -15,4 +15,4 @@ logFolder=${LOG_DIR}/s3
 
 mkdir -p $logFolder
 
-matlab -nodisplay -nodesktop -nosplash -r "run ./subroutines/s3_glmDenoise.m; exit;" > ${logFolder}/glmDenoise.log 2>&1
+matlab -nodisplay -nodesktop -nosplash -r "run ./subroutines/s3_glm_denoise.m; exit;" > ${logFolder}/glmDenoise.log 2>&1
