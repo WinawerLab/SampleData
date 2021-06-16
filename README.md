@@ -8,8 +8,10 @@ those often performed in the Winawer lab.
 You can set the directory to put all data and analyses in by passing a path to
 any of the main scripts. Alternatively, if they're called with no arguments, the
 data directory is set to `DownloadedData/` within this directory or
-`scratch/$(whoami)/SampleData/DownloadedData` if `module list` runs without an
-error (and thus we think we're on a cluster).
+`scratch/$(whoami)/SampleData/DownloadedData` if the `$CLUSTER` environmental
+variable is equal to `GREENE` (and thus we think we're on NYU's greene cluster);
+ideally this would be a general solution for different compute clusters, but we
+couldn't come up with one.
 
 Main scripts:
 - `masterScript.sh`: checks for dependencies (matlab, freesurfer license, python
@@ -83,3 +85,18 @@ git clone git@github.com:WinawerLab/MRI_tools.git ~/Documents/MRI_tools
 # add it to your path
 export PATH="$HOME/Documents/MRI_tools/BIDS/:$PATH"
 ```
+
+- if you're running this on your local machine, then you should be good to go.
+- if you're running this on a compute cluster that's not NYU's greene, then
+  you'll need a couple more changes: you'll need to at least chang:
+  1. `subroutines/utils.sh`: change `on_cluster()` function to something that
+     will work for your cluster (note that we use `set -e pipefail`, so you
+     can't rely on catching errors).
+  2. `subroutines/utils.sh`: check `load_modules()` and make sure the modules
+     are correctly named. If your cluster uses some other command to handle
+     packages, you'll have to change this more.
+  3. `setup.sh`: check that the path `/scratch/$(whoami)` exists and that you
+     have write access (and your cluster admin is okay with placing a lot of
+     large files here). If not, change `$SAMPLE_DATA_DIR` to some other path (in
+     the first if block at the top of the file) or pass a path to the scripts
+     when calling them..

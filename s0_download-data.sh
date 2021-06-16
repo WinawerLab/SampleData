@@ -3,7 +3,7 @@
 #   2. Extras (AddToBIDS)
 
 # Exit upon any error
-set -euxo pipefail
+set -euo pipefail
 
 DIRN=`dirname $0`
 source $DIRN/setup.sh ${1-}

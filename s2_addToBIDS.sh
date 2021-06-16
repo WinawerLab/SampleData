@@ -2,7 +2,7 @@
 #add in the stimfiles and other extras
 
 # Exit upon any error
-set -euxo pipefail
+set -euo pipefail
 
 # Get the path to the sample data, defined as SAMPLE_DATA_DIR
 DIRN=`dirname $0`
@@ -22,7 +22,7 @@ userID=$(id -u):$(id -g)
 
 
 # Run the docker!
-docker run --name BIDSvalidation_container \
+container_run --name BIDSvalidation_container \
            --user $userID \
            --rm \
            --volume $STUDY_DIR:/data:ro \
