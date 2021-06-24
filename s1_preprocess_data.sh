@@ -35,15 +35,16 @@ userID=$(id -u):$(id -g)
 
 ###   Get conatiner images:   ###
 container_pull cbinyu/heudiconv:v3.7.0
-container_pull bids/validator:1.4.3
+container_pull bids/validator:v1.7.2
 container_pull cbinyu/bids_pydeface:v2.0.3
 container_pull poldracklab/mriqc:0.16.1
-container_pull poldracklab/fmriprep:1.4.1
+container_pull nipreps/fmriprep:20.2.1
 
 
 # Set up some derived variables that we'll use later:
 fsLicenseBasename=$(basename $fsLicense)
 fsLicenseFolder=${fsLicense%$fsLicenseBasename}
+
 
 ###   Extract DICOMs into BIDS:   ###
 # The images were extracted and organized in BIDS format:
@@ -54,7 +55,7 @@ container_run \
            cbinyu/heudiconv:v3.7.0 \
            ${SINGULARITY_PULLFOLDER}/heudiconv_v3.7.0.sif \
                "-d /dataIn/{subject}/*/*.dcm \
-               -f cbi_heuristic \
+               -f cbi_heuristic_simple \
                -s ${SUBJECT_ID} \
                -ss ${SESSION_ID} \
                -c dcm2niix \
@@ -72,8 +73,8 @@ chmod -R u+wr,g+wr ${STUDY_DIR}
 container_run \
            $STUDY_DIR:/data:ro \
            $STUDY_DIR:/ignore:ro \
-           bids/validator:1.4.3 \
-           ${SINGULARITY_PULLFOLDER}/validator_1.4.3.sif \
+           bids/validator:v1.7.2 \
+           ${SINGULARITY_PULLFOLDER}/validator_v1.7.2.sif \
                "/data" \
            > ${logFolder}/bids-validator_report.txt 2>&1                   
            # For BIDS compliance, we want the validator report to go to the top level of derivatives. But for debugging, we want all logs from a given script to go to a script-specific folder
@@ -91,7 +92,8 @@ container_run \
                "/data \
                /data/derivatives \
                participant \
-               --participant_label ${SUBJECT_ID}" \
+               --participant_label ${SUBJECT_ID} \
+	       --skip_bids_validator" \
            > ${logFolder}/sub-${SUBJECT_ID}_pydeface.log 2>&1
 
 ###   MRIQC:   ###
@@ -125,15 +127,14 @@ container_run \
 container_run \
            $STUDY_DIR:/data \
            ${fsLicenseFolder}:/FSLicenseFolder:ro \
-           poldracklab/fmriprep:1.4.1 \
-           ${SINGULARITY_PULLFOLDER}/fmriprep_1.4.1.sif \
+           nipreps/fmriprep:20.2.1 \
+           ${SINGULARITY_PULLFOLDER}/fmriprep_20.2.1.sif \
                "/data \
                /data/derivatives \
                participant \
                --fs-license-file /FSLicenseFolder/$fsLicenseBasename \
-               --output-space T1w fsnative template \
-               --template-resampling-grid "native" \
-               --t2s-coreg \
+               --output-space T1w:res-native fsnative:res-native \
                --participant_label ${SUBJECT_ID} \
+               --skip_bids_validation \
                --no-submm-recon" \
            > ${logFolder}/sub-${SUBJECT_ID}_fMRIPrep.log 2>&1

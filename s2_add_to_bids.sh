@@ -22,11 +22,11 @@ userID=$(id -u):$(id -g)
 
 
 # Run the docker!
-container_run --name BIDSvalidation_container \
-           --user $userID \
-           --rm \
-           --volume $STUDY_DIR:/data:ro \
-           bids/validator \
-               /data \
+container_run \
+	   $STUDY_DIR:/data:ro \
+	   $STUDY_DIR:/ignore:ro \
+	   bids/validator:v1.7.2 \
+           ${SINGULARITY_PULLFOLDER}/validator_v1.7.2.sif \
+               "/data" \
            > ${logFolder}/bids-validator_report.txt 2>&1  
            #>> ${STUDY_DIR}/derivatives/bids-validator_report.txt 2>&1
