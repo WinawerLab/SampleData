@@ -38,7 +38,7 @@ container_pull cbinyu/heudiconv:v3.7.0
 container_pull bids/validator:v1.7.2
 container_pull cbinyu/bids_pydeface:v2.0.3
 container_pull poldracklab/mriqc:0.16.1
-container_pull nipreps/fmriprep:20.2.1
+container_pull nipreps/fmriprep:20.2.3
 
 
 # Set up some derived variables that we'll use later:
